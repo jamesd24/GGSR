@@ -29,6 +29,12 @@ namespace GGSR
             InitializeComponent();
             DataBase = db;
             LoginTypeComboBox.SelectedIndex = 0;
+
+            //Default
+            serverTextBox.Text = "localhost";
+            PassInputBox.Text = "admin";
+            UserNameInputBox.Text = "jamesdahms@gmail.com";
+            LoginTypeComboBox.SelectedIndex = 2;
         }
 
         private void LoginBtn_Click(object sender, EventArgs e)
@@ -101,7 +107,7 @@ namespace GGSR
 
         private void LaunchStoreManagerApp()
         {
-            var app = new MainStoreManagerApp();
+            var app = new MainStoreManagerApp(this,DataBase);
             app.Show();
             this.Hide();
         }

@@ -23,7 +23,36 @@ namespace GGSR.Common
             UserType = ut;
             UserId = id;
         }
+
+        public User()
+        {
+        }
     }
+
+    public class StoreManager : User
+    {
+    }
+
+    public class DeptManager : User
+    {
+        public Department Dept;
+
+        public DeptManager(String fn, String ln, String em, int id, Department dept)
+        {
+            FirstName = fn;
+            LastName = ln;
+            Email = em;
+            UserType = UserType.DEPT_MANAGER;
+            UserId = id;
+            Dept = dept;
+        }
+    }
+
+    public class TeamMember : User
+    {
+
+    }
+
 
     public enum UserType
     {

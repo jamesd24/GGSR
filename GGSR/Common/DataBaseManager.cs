@@ -17,8 +17,14 @@ namespace GGSR.Common
 
         public User ConnectedUser;
 
+        public int StoreId;
+
+        private String Server;
+
         public void Connect(String Email, String Pass, String Server, int LoginType )
         {
+            this.Server = Server;
+
             LoginConnStr = @"server=" + Server + ";userid=Login;password=loginmanager;database=ggsr";
 
             try
@@ -68,6 +74,8 @@ namespace GGSR.Common
                             loginProc.Result.SM_EMAIL,
                             Type,
                             loginProc.Result.SM_ID);
+
+                    StoreId = loginProc.Result.SM_STORE_ID;
                 }
                 else
                 {
@@ -115,6 +123,34 @@ namespace GGSR.Common
         private User IncorectLogin()
         {
             return new User("INCORECT","LOGIN","ERROR",UserType.INVALID,-1);
+        }
+
+        public void ChangeConnectionUser(UserType type)
+        {
+            Connection.Close();
+
+            switch (type)
+            {
+                case UserType.STORE_MANAGER:
+                    LoginConnStr = @"server=" + Server + ";userid=Storemanager;password=sm!9876;database=ggsr";
+                    break;
+                case UserType.DEPT_MANAGER:
+                    LoginConnStr = @"server=" + Server + ";userid=Deptmanager;password=dm!9876;database=ggsr";
+                    break;
+                case UserType.TEAM_MEMBER:
+                    LoginConnStr = @"server=" + Server + ";userid=Teammember;password=tm!9876;database=ggsr";
+                    break;
+            }
+            try
+            {
+                Connection = new MySqlConnection(LoginConnStr);
+                Connection.Open();
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Error: " + ex.ToString());
+                Connection.Close();
+            }
         }
     }
 }

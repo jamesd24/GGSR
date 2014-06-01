@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\Department.cs" />
     <Compile Include="Common\User.cs" />
     <Compile Include="Common\DataBaseManager.cs" />
     <Compile Include="MainLogin\MainLogin.cs">
@@ -55,12 +56,29 @@
     <Compile Include="MainLogin\MainLogin.Designer.cs">
       <DependentUpon>MainLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Procs\sm_EditDepartmentManager.cs" />
+    <Compile Include="Procs\sm_NewDepartmentManager.cs" />
     <Compile Include="Procs\log_DeptManagerLogIn.cs" />
     <Compile Include="Procs\log_StoreManagerLogIn.cs" />
     <Compile Include="Procs\log_TeamMemberLogIn.cs" />
+    <Compile Include="Procs\sm_GetDepartmentManagers.cs" />
+    <Compile Include="Procs\sm_GetDepartments.cs" />
+    <Compile Include="Procs\sm_NewDepartment.cs" />
     <Compile Include="Procs\StoredProcBase.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StoreManagerApp\DepartmentManagerPP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StoreManagerApp\DepartmentManagerPP.Designer.cs">
+      <DependentUpon>DepartmentManagerPP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StoreManagerApp\DepartmentPP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StoreManagerApp\DepartmentPP.Designer.cs">
+      <DependentUpon>DepartmentPP.cs</DependentUpon>
+    </Compile>
     <Compile Include="StoreManagerApp\MainStoreManagerApp.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -79,6 +97,15 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="StoreManagerApp\DepartmentManagerPP.resx">
+      <DependentUpon>DepartmentManagerPP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StoreManagerApp\DepartmentPP.resx">
+      <DependentUpon>DepartmentPP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StoreManagerApp\MainStoreManagerApp.resx">
+      <DependentUpon>MainStoreManagerApp.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

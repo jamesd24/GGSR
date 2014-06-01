@@ -19,6 +19,7 @@ namespace GGSR.Procs
             public string SM_EMAIL;
             public string SM_FIRST_NAME;
             public string SM_LAST_NAME;
+            public int SM_STORE_ID;
         }
 
         public log_StoreManagerLogIn(MySqlConnection c, String em, String p)
@@ -45,6 +46,7 @@ namespace GGSR.Procs
                 Result.SM_EMAIL = read.GetString(1);
                 Result.SM_FIRST_NAME = read.GetString(2);
                 Result.SM_LAST_NAME = read.GetString(3);
+                Result.SM_STORE_ID = read.GetInt32(4);
             }          
             read.Close();
             
@@ -52,8 +54,8 @@ namespace GGSR.Procs
 
         public override string GenerateQuery()
         {
-            return "SELECT sm_id , email , first_name , last_name FROM store_managers " +
-                        "WHERE email = '" + email + "' AND password = '" + pass + "'";
+            return "SELECT sm.sm_id , sm.email , sm.first_name , sm.last_name, s.store_id FROM store_managers AS sm, stores AS s " +
+                        "WHERE sm.email = '" + email + "' AND sm.password = '" + pass + "'" + "AND s.store_manager = sm.sm_id";
         }
     }
 }
