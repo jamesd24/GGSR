@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using GGSR.Common;
 
 namespace GGSR
 {
@@ -15,7 +16,7 @@ namespace GGSR
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainLogin());
+            Application.Run(new MainLogin(new DataBaseManager()));
         }
     }
 }

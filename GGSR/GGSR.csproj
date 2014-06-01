@@ -34,6 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MySql.Data, Version=6.8.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,15 +47,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MainLogin.cs">
+    <Compile Include="Common\User.cs" />
+    <Compile Include="Common\DataBaseManager.cs" />
+    <Compile Include="MainLogin\MainLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainLogin.Designer.cs">
+    <Compile Include="MainLogin\MainLogin.Designer.cs">
       <DependentUpon>MainLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Procs\log_DeptManagerLogIn.cs" />
+    <Compile Include="Procs\log_StoreManagerLogIn.cs" />
+    <Compile Include="Procs\log_TeamMemberLogIn.cs" />
+    <Compile Include="Procs\StoredProcBase.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="MainLogin.resx">
+    <Compile Include="StoreManagerApp\MainStoreManagerApp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StoreManagerApp\MainStoreManagerApp.Designer.cs">
+      <DependentUpon>MainStoreManagerApp.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="MainLogin\MainLogin.resx">
       <DependentUpon>MainLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -76,6 +89,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
