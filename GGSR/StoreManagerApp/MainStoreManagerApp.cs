@@ -14,7 +14,7 @@ namespace GGSR.StoreManagerApp
     public partial class MainStoreManagerApp : Form
     {
         private MainLogin logForm;
-        private DataBaseManager database;
+        public DataBaseManager Database;
 
         private sm_GetDepartmentManagers DeptManagersProc;
 
@@ -22,8 +22,8 @@ namespace GGSR.StoreManagerApp
         {
             InitializeComponent();
             logForm = lg;
-            database = dbm;
-            database.ChangeConnectionUser(database.ConnectedUser.UserType);
+            Database = dbm;
+            Database.ChangeConnectionUser(Database.ConnectedUser.UserType);
 
             RefreshDeptManagersList();
             
@@ -43,15 +43,38 @@ namespace GGSR.StoreManagerApp
 
         private void AddDptMngBtn_Click(object sender, EventArgs e)
         {
-            var DepMgnPP = new DepartmentManagerPP(database.Connection);
+            var DepMgnPP = new DepartmentManagerPP(Database.Connection,this);
             DepMgnPP.Show();
+        }
+
+        private void EditDeptManagerBtn_Click(object sender, EventArgs e)
+        {
+            if (DeptManagersListView.SelectedIndices.Count == 1)
+            {
+                var selManager = DeptManagersProc.Result[DeptManagersListView.SelectedIndices[0]];
+                var DepMgnPP = new DepartmentManagerPP(Database.Connection, selManager, this);
+                DepMgnPP.Show();
+            }
+        }
+
+        private void DelDeptManagerBtn_Click(object sender, EventArgs e)
+        {
+            if (DeptManagersListView.SelectedIndices.Count == 1)
+            {
+                var selManager = DeptManagersProc.Result[DeptManagersListView.SelectedIndices[0]];
+                var proc = new sm_DelDepartmentManager(Database.Connection, selManager.UserId);
+                proc.Execute();
+            }
+            RefreshDeptManagersList();
         }
 
         private void RefreshDeptManagersList()
         {
-            DeptManagersProc = new sm_GetDepartmentManagers(database.Connection, database.StoreId);
+            DeptManagersProc = new sm_GetDepartmentManagers(Database.Connection, Database.StoreId);
             DeptManagersProc.Execute();
             List<DeptManager> list = DeptManagersProc.Result;
+
+            DeptManagersListView.Items.Clear();
 
             foreach (DeptManager dm in list)
             {
@@ -68,8 +91,15 @@ namespace GGSR.StoreManagerApp
                 {
                     itm[3] = dm.Dept.Name;
                 }
+
                 DeptManagersListView.Items.Add(new ListViewItem(itm));
             }
         }
-    }
+
+        public void OnPropertyPageClosed()
+        {
+            RefreshDeptManagersList();
+            //TODO Refresh other list
+        }      
+    } 
 }

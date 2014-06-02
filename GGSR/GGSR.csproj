@@ -56,6 +56,7 @@
     <Compile Include="MainLogin\MainLogin.Designer.cs">
       <DependentUpon>MainLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Procs\sm_DelDepartmentManager.cs" />
     <Compile Include="Procs\sm_EditDepartmentManager.cs" />
     <Compile Include="Procs\sm_NewDepartmentManager.cs" />
     <Compile Include="Procs\log_DeptManagerLogIn.cs" />

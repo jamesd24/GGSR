@@ -175,6 +175,7 @@
             this.Controls.Add(this.OkBtn);
             this.Controls.Add(this.TitleLbl);
             this.Name = "DepartmentManagerPP";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.DepartmentManagerPP_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

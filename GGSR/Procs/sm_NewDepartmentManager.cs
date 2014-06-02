@@ -12,16 +12,18 @@ namespace GGSR.Procs
         private String lastName;
         private String email;
         private String pass;
+        private int store;
 
         public int Id = 0;
 
-        public sm_NewDepartmentManager(MySqlConnection c, String em, String p, String fn, String ln)
+        public sm_NewDepartmentManager(MySqlConnection c, String em, String p, String fn, String ln, int s)
         {
             base.Connection = c;
             firstName = fn;
             lastName = ln;
             email = em;
             pass = p;
+            store = s;
         }
 
         public override void Execute()
@@ -41,11 +43,12 @@ namespace GGSR.Procs
 
         public override string GenerateQuery()
         {
-            return "INSERT INTO dept_managers(first_name,last_name,email,password) VALUES('"
+            return "INSERT INTO dept_managers(first_name,last_name,email,password,store) VALUES('"
                     + firstName + "','"
                     + lastName + "','"
                     + email + "','"
-                    + pass + "')";
+                    + pass + "',"
+                    + store + ")";
         }
 
         private string GetIdQuery()

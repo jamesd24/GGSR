@@ -15,19 +15,22 @@ namespace GGSR.StoreManagerApp
     public partial class DepartmentManagerPP : Form
     {
         private MySqlConnection connection;
-
         private User manager = null;
+        private MainStoreManagerApp parentForm;
 
-        public DepartmentManagerPP(MySqlConnection c)
+        public DepartmentManagerPP(MySqlConnection c, MainStoreManagerApp pf)
         {
             //New Manager
             InitializeComponent();
             connection = c;
+            parentForm = pf;
         }
-        public DepartmentManagerPP(MySqlConnection c, User u)
+        public DepartmentManagerPP(MySqlConnection c, DeptManager dm, MainStoreManagerApp pf)
         {
             InitializeComponent();
-            manager = u;
+            connection = c;
+            manager = dm;
+            parentForm = pf;
             RefreshFields();
         }
 
@@ -43,10 +46,11 @@ namespace GGSR.StoreManagerApp
             String ln = LastInputBox.Text.Trim();
             String em = EmailInputBox.Text.Trim();
             String p = PassInputBox.Text;
+            int s = parentForm.Database.StoreId;
 
             if (manager == null)
             {
-                var proc = new sm_NewDepartmentManager(connection, em, p, fn, ln);
+                var proc = new sm_NewDepartmentManager(connection, em, p, fn, ln,s);
                 proc.Execute();
                 manager = new User(fn, ln, em, UserType.STORE_MANAGER, proc.Id);
             }
@@ -77,6 +81,11 @@ namespace GGSR.StoreManagerApp
             EmailInputBox.Text = manager.Email;
             PassInputBox.Visible = false;
             PassLbl.Visible = false;
+        }
+
+        private void DepartmentManagerPP_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            parentForm.OnPropertyPageClosed();
         }
     }
 }

@@ -46,8 +46,8 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.DelDeptManagerBtn = new System.Windows.Forms.Button();
+            this.EditDeptManagerBtn = new System.Windows.Forms.Button();
             this.AddDptMngBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.LogOutBtn = new System.Windows.Forms.Button();
@@ -147,8 +147,8 @@
             // 
             this.tabPage2.BackColor = System.Drawing.SystemColors.Control;
             this.tabPage2.Controls.Add(this.DeptManagersListView);
-            this.tabPage2.Controls.Add(this.button4);
-            this.tabPage2.Controls.Add(this.button5);
+            this.tabPage2.Controls.Add(this.DelDeptManagerBtn);
+            this.tabPage2.Controls.Add(this.EditDeptManagerBtn);
             this.tabPage2.Controls.Add(this.AddDptMngBtn);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
@@ -166,6 +166,7 @@
             this.columnHeader4});
             this.DeptManagersListView.FullRowSelect = true;
             this.DeptManagersListView.Location = new System.Drawing.Point(5, 6);
+            this.DeptManagersListView.MultiSelect = false;
             this.DeptManagersListView.Name = "DeptManagersListView";
             this.DeptManagersListView.Size = new System.Drawing.Size(496, 396);
             this.DeptManagersListView.TabIndex = 8;
@@ -192,23 +193,25 @@
             this.columnHeader4.Text = "Department";
             this.columnHeader4.Width = 120;
             // 
-            // button4
+            // DelDeptManagerBtn
             // 
-            this.button4.Location = new System.Drawing.Point(505, 64);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(142, 23);
-            this.button4.TabIndex = 7;
-            this.button4.Text = "Delete";
-            this.button4.UseVisualStyleBackColor = true;
+            this.DelDeptManagerBtn.Location = new System.Drawing.Point(505, 64);
+            this.DelDeptManagerBtn.Name = "DelDeptManagerBtn";
+            this.DelDeptManagerBtn.Size = new System.Drawing.Size(142, 23);
+            this.DelDeptManagerBtn.TabIndex = 7;
+            this.DelDeptManagerBtn.Text = "Delete";
+            this.DelDeptManagerBtn.UseVisualStyleBackColor = true;
+            this.DelDeptManagerBtn.Click += new System.EventHandler(this.DelDeptManagerBtn_Click);
             // 
-            // button5
+            // EditDeptManagerBtn
             // 
-            this.button5.Location = new System.Drawing.Point(505, 35);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(142, 23);
-            this.button5.TabIndex = 6;
-            this.button5.Text = "Edit";
-            this.button5.UseVisualStyleBackColor = true;
+            this.EditDeptManagerBtn.Location = new System.Drawing.Point(505, 35);
+            this.EditDeptManagerBtn.Name = "EditDeptManagerBtn";
+            this.EditDeptManagerBtn.Size = new System.Drawing.Size(142, 23);
+            this.EditDeptManagerBtn.TabIndex = 6;
+            this.EditDeptManagerBtn.Text = "Edit";
+            this.EditDeptManagerBtn.UseVisualStyleBackColor = true;
+            this.EditDeptManagerBtn.Click += new System.EventHandler(this.EditDeptManagerBtn_Click);
             // 
             // AddDptMngBtn
             // 
@@ -296,8 +299,8 @@
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button DelDeptManagerBtn;
+        private System.Windows.Forms.Button EditDeptManagerBtn;
         private System.Windows.Forms.Button AddDptMngBtn;
         private System.Windows.Forms.ColumnHeader columnHeader4;
     }
