@@ -19,7 +19,10 @@
             }
             base.Dispose(disposing);
 
-            logForm.Dispose();
+            if (!logout)
+            {
+                logForm.Dispose();
+            }          
         }
 
         #region Windows Form Designer generated code
@@ -30,10 +33,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("Name", System.Windows.Forms.HorizontalAlignment.Left);
             this.tabDptManagers = new System.Windows.Forms.TabControl();
             this.tabDepartments = new System.Windows.Forms.TabPage();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.DeptsListView = new System.Windows.Forms.ListView();
             this.IDCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.NameCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ManagerCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -71,7 +73,7 @@
             // tabDepartments
             // 
             this.tabDepartments.BackColor = System.Drawing.SystemColors.Control;
-            this.tabDepartments.Controls.Add(this.listView1);
+            this.tabDepartments.Controls.Add(this.DeptsListView);
             this.tabDepartments.Controls.Add(this.button3);
             this.tabDepartments.Controls.Add(this.EditDeptBtn);
             this.tabDepartments.Controls.Add(this.AddDeptBtn);
@@ -82,22 +84,20 @@
             this.tabDepartments.TabIndex = 0;
             this.tabDepartments.Text = "Departments";
             // 
-            // listView1
+            // DeptsListView
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.DeptsListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.IDCol,
             this.NameCol,
             this.ManagerCol});
-            listViewGroup2.Header = "Name";
-            listViewGroup2.Name = "listViewGroup1";
-            this.listView1.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup2});
-            this.listView1.Location = new System.Drawing.Point(6, 6);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(496, 396);
-            this.listView1.TabIndex = 4;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.DeptsListView.FullRowSelect = true;
+            this.DeptsListView.Location = new System.Drawing.Point(6, 6);
+            this.DeptsListView.MultiSelect = false;
+            this.DeptsListView.Name = "DeptsListView";
+            this.DeptsListView.Size = new System.Drawing.Size(496, 396);
+            this.DeptsListView.TabIndex = 4;
+            this.DeptsListView.UseCompatibleStateImageBehavior = false;
+            this.DeptsListView.View = System.Windows.Forms.View.Details;
             // 
             // IDCol
             // 
@@ -240,6 +240,7 @@
             this.LogOutBtn.TabIndex = 2;
             this.LogOutBtn.Text = "Log Out";
             this.LogOutBtn.UseVisualStyleBackColor = true;
+            this.LogOutBtn.Click += new System.EventHandler(this.LogOutBtn_Click);
             // 
             // label2
             // 
@@ -288,7 +289,7 @@
         private System.Windows.Forms.Button LogOutBtn;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView DeptsListView;
         private System.Windows.Forms.ColumnHeader IDCol;
         private System.Windows.Forms.ColumnHeader NameCol;
         private System.Windows.Forms.ColumnHeader ManagerCol;

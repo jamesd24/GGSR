@@ -34,8 +34,8 @@
             this.CancelBtn = new System.Windows.Forms.Button();
             this.PassLbl = new System.Windows.Forms.Label();
             this.EmailLbl = new System.Windows.Forms.Label();
-            this.UserNameInputBox = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.DeptNameInputBox = new System.Windows.Forms.TextBox();
+            this.ManagerComboBox = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // TitleLbl
@@ -57,6 +57,7 @@
             this.OkBtn.TabIndex = 5;
             this.OkBtn.Text = "OK";
             this.OkBtn.UseVisualStyleBackColor = true;
+            this.OkBtn.Click += new System.EventHandler(this.OkBtn_Click);
             // 
             // ApplyBtn
             // 
@@ -67,6 +68,7 @@
             this.ApplyBtn.TabIndex = 6;
             this.ApplyBtn.Text = "Apply";
             this.ApplyBtn.UseVisualStyleBackColor = true;
+            this.ApplyBtn.Click += new System.EventHandler(this.ApplyBtn_Click);
             // 
             // CancelBtn
             // 
@@ -77,6 +79,7 @@
             this.CancelBtn.TabIndex = 7;
             this.CancelBtn.Text = "Cancel";
             this.CancelBtn.UseVisualStyleBackColor = true;
+            this.CancelBtn.Click += new System.EventHandler(this.CancelBtn_Click);
             // 
             // PassLbl
             // 
@@ -98,38 +101,39 @@
             this.EmailLbl.TabIndex = 10;
             this.EmailLbl.Text = "Department Name:";
             // 
-            // UserNameInputBox
+            // DeptNameInputBox
             // 
-            this.UserNameInputBox.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UserNameInputBox.Location = new System.Drawing.Point(159, 51);
-            this.UserNameInputBox.Name = "UserNameInputBox";
-            this.UserNameInputBox.Size = new System.Drawing.Size(297, 26);
-            this.UserNameInputBox.TabIndex = 8;
+            this.DeptNameInputBox.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DeptNameInputBox.Location = new System.Drawing.Point(159, 51);
+            this.DeptNameInputBox.Name = "DeptNameInputBox";
+            this.DeptNameInputBox.Size = new System.Drawing.Size(297, 26);
+            this.DeptNameInputBox.TabIndex = 8;
             // 
-            // comboBox1
+            // ManagerComboBox
             // 
-            this.comboBox1.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(159, 88);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(297, 28);
-            this.comboBox1.TabIndex = 12;
+            this.ManagerComboBox.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ManagerComboBox.FormattingEnabled = true;
+            this.ManagerComboBox.Location = new System.Drawing.Point(159, 88);
+            this.ManagerComboBox.Name = "ManagerComboBox";
+            this.ManagerComboBox.Size = new System.Drawing.Size(297, 28);
+            this.ManagerComboBox.TabIndex = 12;
             // 
             // DepartmentPP
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(479, 175);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.ManagerComboBox);
             this.Controls.Add(this.PassLbl);
             this.Controls.Add(this.EmailLbl);
-            this.Controls.Add(this.UserNameInputBox);
+            this.Controls.Add(this.DeptNameInputBox);
             this.Controls.Add(this.CancelBtn);
             this.Controls.Add(this.ApplyBtn);
             this.Controls.Add(this.OkBtn);
             this.Controls.Add(this.TitleLbl);
             this.Name = "DepartmentPP";
             this.Text = "DepartmentPP";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.DepartmentPP_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -143,7 +147,7 @@
         private System.Windows.Forms.Button CancelBtn;
         private System.Windows.Forms.Label PassLbl;
         private System.Windows.Forms.Label EmailLbl;
-        private System.Windows.Forms.TextBox UserNameInputBox;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.TextBox DeptNameInputBox;
+        private System.Windows.Forms.ComboBox ManagerComboBox;
     }
 }

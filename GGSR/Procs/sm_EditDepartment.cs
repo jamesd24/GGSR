@@ -6,20 +6,18 @@ using MySql.Data.MySqlClient;
 
 namespace GGSR.Procs
 {
-    class sm_NewDepartment : StoredProcBase
+    class sm_EditDepartment : StoredProcBase
     {
         private String Name;
         private int managerId;
-        private int storeId;
+        private int deptId;
 
-        public int Id = 0;
-
-        public sm_NewDepartment(MySqlConnection c, String n, int m, int s)
+        public sm_EditDepartment(MySqlConnection c, String n, int m, int d)
         {
             base.Connection = c;
             Name = n;
             managerId = m;
-            storeId = s;
+            deptId = d;
         }
 
         public override void Execute()
@@ -31,10 +29,6 @@ namespace GGSR.Procs
             Command = new MySqlCommand(GetIdQuery(), Connection);
             MySqlDataReader read = Command.ExecuteReader();
 
-            read.Read();
-            Id = read.GetInt32(0);        
-            read.Close();
-
             Command = new MySqlCommand(UpdateManagerQuery(), Connection);
             Command.Prepare();
             Command.ExecuteNonQuery();
@@ -43,7 +37,7 @@ namespace GGSR.Procs
 
         public override string GenerateQuery()
         {
-            return string.Format("INSERT INTO department(dept_name,store) VALUES({0},{1})",Name,storeId);
+            return string.Format("INSERT INTO department(dept_name,store) VALUES({0},{1})", Name, deptId);
         }
 
         private string GetIdQuery()
@@ -53,7 +47,7 @@ namespace GGSR.Procs
 
         private string UpdateManagerQuery()
         {
-            return string.Format("UPDATE dept_managers SET dept = {0} WHERE manager_id = {1}",Id,managerId);
+            return string.Format("UPDATE dept_managers SET dept = {0} WHERE manager_id = {1}",deptId,managerId);
         }
     }
 }

@@ -82,7 +82,7 @@ namespace GGSR
             }
         }
 
-        private void ResetLoginForm()
+        public void ResetLoginForm()
         {
             loadingLbl.Text = "";
             LoginBtn.Enabled = true;
