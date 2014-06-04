@@ -1,4 +1,4 @@
-GGSR
+GRMS
 ====
 
-General Grocery Store Rosters
+General Roster Management System
