@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using GGSR.Common;
 using GGSR.StoreManagerApp;
+using GGSR.DeptManagerApp;
 
 namespace GGSR
 {
@@ -33,8 +34,8 @@ namespace GGSR
             //Default
             serverTextBox.Text = "localhost";
             PassInputBox.Text = "admin";
-            UserNameInputBox.Text = "jamesdahms@gmail.com";
-            LoginTypeComboBox.SelectedIndex = 2;
+            UserNameInputBox.Text = "test@email";
+            LoginTypeComboBox.SelectedIndex = 1;
         }
 
         private void LoginBtn_Click(object sender, EventArgs e)
@@ -114,7 +115,9 @@ namespace GGSR
 
         private void LaunchDeptManagerApp()
         {
-
+            var app = new MainDeptManagerApp(this, DataBase);
+            app.Show();
+            this.Hide();
         }
 
         private void LaunchTeamMemberApp()

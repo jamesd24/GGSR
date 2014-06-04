@@ -19,6 +19,8 @@ namespace GGSR.Common
 
         public int StoreId;
 
+        public int DeptId;
+
         private String Server;
 
         public void Connect(String Email, String Pass, String Server, int LoginType )
@@ -94,6 +96,10 @@ namespace GGSR.Common
                             loginProc.Result.DM_EMAIL,
                             Type,
                             loginProc.Result.DM_ID);
+                    
+                    StoreId = loginProc.Result.DM_STORE_ID;
+
+                    DeptId = loginProc.Result.DM_DEPT_ID;
                 }
                 else
                 {

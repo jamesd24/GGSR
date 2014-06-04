@@ -56,6 +56,19 @@ namespace GGSR.Common
     public class TeamMember : User
     {
 
+        public TeamMember(String fn, String ln, String em, int id)
+        {
+            FirstName = fn;
+            LastName = ln;
+            Email = em;
+            UserType = UserType.TEAM_MEMBER;
+            UserId = id;
+        }
+
+        public string ToNameString()
+        {
+            return FirstName + " " + LastName;
+        }
     }
 
 

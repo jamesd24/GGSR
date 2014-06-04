@@ -19,6 +19,8 @@ namespace GGSR.Procs
             public string DM_EMAIL;
             public string DM_FIRST_NAME;
             public string DM_LAST_NAME;
+            public int DM_STORE_ID;
+            public int DM_DEPT_ID;
         }
 
         public log_DeptManagerLogIn(MySqlConnection c, String em, String p)
@@ -45,6 +47,8 @@ namespace GGSR.Procs
                 Result.DM_EMAIL = read.GetString(1);
                 Result.DM_FIRST_NAME = read.GetString(2);
                 Result.DM_LAST_NAME = read.GetString(3);
+                Result.DM_STORE_ID = read.GetInt32(4);
+                Result.DM_DEPT_ID = read.GetInt32(5);
             }          
             read.Close();
             
@@ -52,8 +56,11 @@ namespace GGSR.Procs
 
         public override string GenerateQuery()
         {
-            return "SELECT manager_id , email , first_name , last_name FROM dept_managers " +
-                        "WHERE email = '" + email + "' AND password = '" + pass + "'";
+            return String.Format(
+                "SELECT dm.manager_id , dm.email , dm.first_name , dm.last_name, d.store, dm.dept " + 
+                "FROM dept_managers AS dm, department AS d " + 
+                "WHERE dm.email = '{0}' AND dm.password = '{1}' " +
+                "AND dm.dept = d.dept_id", email,pass);
         }
     }
 }

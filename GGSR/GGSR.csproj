@@ -51,12 +51,29 @@
     <Compile Include="Common\Store.cs" />
     <Compile Include="Common\User.cs" />
     <Compile Include="Common\DataBaseManager.cs" />
+    <Compile Include="DeptManagerApp\TeamMemberPP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeptManagerApp\TeamMemberPP.Designer.cs">
+      <DependentUpon>TeamMemberPP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DeptManagerApp\MainDeptManagerApp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeptManagerApp\MainDeptManagerApp.Designer.cs">
+      <DependentUpon>MainDeptManagerApp.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainLogin\MainLogin.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainLogin\MainLogin.Designer.cs">
       <DependentUpon>MainLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Procs\DepartmentManager\dm_DelTeamMember.cs" />
+    <Compile Include="Procs\DepartmentManager\dm_EditTeamMember.cs" />
+    <Compile Include="Procs\DepartmentManager\dm_GetTeamMembers.cs" />
+    <Compile Include="Procs\DepartmentManager\dm_NewTeamMember.cs" />
+    <Compile Include="Procs\DepartmentManager\dm_GetStoreAndDeptDetails.cs" />
     <Compile Include="Procs\StoreManager\sm_EditDepartment.cs" />
     <Compile Include="Procs\StoreManager\sm_DelDepartment.cs" />
     <Compile Include="Procs\StoreManager\sm_DelDepartmentManager.cs" />
@@ -90,6 +107,12 @@
     <Compile Include="StoreManagerApp\MainStoreManagerApp.Designer.cs">
       <DependentUpon>MainStoreManagerApp.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="DeptManagerApp\TeamMemberPP.resx">
+      <DependentUpon>TeamMemberPP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeptManagerApp\MainDeptManagerApp.resx">
+      <DependentUpon>MainDeptManagerApp.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainLogin\MainLogin.resx">
       <DependentUpon>MainLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -122,8 +145,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Procs\DepartmentManager\" />
     <Folder Include="Procs\TeamMember\" />
+    <Folder Include="TeamMemberApp\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
