@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\Department.cs" />
+    <Compile Include="Common\Store.cs" />
     <Compile Include="Common\User.cs" />
     <Compile Include="Common\DataBaseManager.cs" />
     <Compile Include="MainLogin\MainLogin.cs">
@@ -56,17 +57,18 @@
     <Compile Include="MainLogin\MainLogin.Designer.cs">
       <DependentUpon>MainLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="Procs\sm_EditDepartment.cs" />
-    <Compile Include="Procs\sm_DelDepartment.cs" />
-    <Compile Include="Procs\sm_DelDepartmentManager.cs" />
-    <Compile Include="Procs\sm_EditDepartmentManager.cs" />
-    <Compile Include="Procs\sm_NewDepartmentManager.cs" />
-    <Compile Include="Procs\log_DeptManagerLogIn.cs" />
-    <Compile Include="Procs\log_StoreManagerLogIn.cs" />
-    <Compile Include="Procs\log_TeamMemberLogIn.cs" />
-    <Compile Include="Procs\sm_GetDepartmentManagers.cs" />
-    <Compile Include="Procs\sm_GetDepartments.cs" />
-    <Compile Include="Procs\sm_NewDepartment.cs" />
+    <Compile Include="Procs\StoreManager\sm_EditDepartment.cs" />
+    <Compile Include="Procs\StoreManager\sm_DelDepartment.cs" />
+    <Compile Include="Procs\StoreManager\sm_DelDepartmentManager.cs" />
+    <Compile Include="Procs\StoreManager\sm_EditDepartmentManager.cs" />
+    <Compile Include="Procs\StoreManager\sm_GetStoreDetails.cs" />
+    <Compile Include="Procs\StoreManager\sm_NewDepartmentManager.cs" />
+    <Compile Include="Procs\Login\log_DeptManagerLogIn.cs" />
+    <Compile Include="Procs\Login\log_StoreManagerLogIn.cs" />
+    <Compile Include="Procs\Login\log_TeamMemberLogIn.cs" />
+    <Compile Include="Procs\StoreManager\sm_GetDepartmentManagers.cs" />
+    <Compile Include="Procs\StoreManager\sm_GetDepartments.cs" />
+    <Compile Include="Procs\StoreManager\sm_NewDepartment.cs" />
     <Compile Include="Procs\StoredProcBase.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -119,7 +121,10 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Procs\DepartmentManager\" />
+    <Folder Include="Procs\TeamMember\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

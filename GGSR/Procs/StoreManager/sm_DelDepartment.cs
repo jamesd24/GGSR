@@ -20,10 +20,13 @@ namespace GGSR.Procs
 
         public override void Execute()
         {
-            Command = new MySqlCommand(GenerateQuery(), Connection);
-            Command.Prepare();
-            Command.ExecuteNonQuery();
-
+            if (managerId != -1)
+            {
+                Command = new MySqlCommand(GenerateQuery(), Connection);
+                Command.Prepare();
+                Command.ExecuteNonQuery();
+            }
+            
             Command = new MySqlCommand(SecondQuery(), Connection);
             Command.Prepare();
             Command.ExecuteNonQuery();
@@ -31,7 +34,7 @@ namespace GGSR.Procs
 
         public override string GenerateQuery()
         {
-            return string.Format("UPDATE dept_managers SET dept is null WHERE manager_id = {0}", managerId);
+            return string.Format("UPDATE dept_managers SET dept = null WHERE manager_id = {0}", managerId);
         }
 
         public string SecondQuery()

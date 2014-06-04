@@ -50,11 +50,11 @@
             // 
             this.HeadingLbl.AutoSize = true;
             this.HeadingLbl.Font = new System.Drawing.Font("Arial Narrow", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.HeadingLbl.Location = new System.Drawing.Point(95, 9);
+            this.HeadingLbl.Location = new System.Drawing.Point(66, 9);
             this.HeadingLbl.Name = "HeadingLbl";
-            this.HeadingLbl.Size = new System.Drawing.Size(302, 29);
+            this.HeadingLbl.Size = new System.Drawing.Size(356, 29);
             this.HeadingLbl.TabIndex = 0;
-            this.HeadingLbl.Text = "General Grocery Store Rosters";
+            this.HeadingLbl.Text = "General Roster Management System";
             // 
             // LoginBtn
             // 
@@ -194,7 +194,7 @@
             this.MaximizeBox = false;
             this.Name = "MainLogin";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-            this.Text = "GGSR";
+            this.Text = "GRMS";
             ((System.ComponentModel.ISupportInitialize)(this.loginErrorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

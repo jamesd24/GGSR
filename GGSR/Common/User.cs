@@ -46,6 +46,11 @@ namespace GGSR.Common
             UserId = id;
             Dept = dept;
         }
+
+        public string ToNameString()
+        {
+            return FirstName + " " + LastName;
+        }
     }
 
     public class TeamMember : User

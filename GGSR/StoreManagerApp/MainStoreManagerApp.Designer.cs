@@ -39,7 +39,7 @@
             this.IDCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.NameCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ManagerCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.button3 = new System.Windows.Forms.Button();
+            this.DelDepartBtn = new System.Windows.Forms.Button();
             this.EditDeptBtn = new System.Windows.Forms.Button();
             this.AddDeptBtn = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -54,7 +54,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.LogOutBtn = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.UserNameLbl = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.StoreLbl = new System.Windows.Forms.Label();
             this.tabDptManagers.SuspendLayout();
             this.tabDepartments.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -64,23 +66,24 @@
             // 
             this.tabDptManagers.Controls.Add(this.tabDepartments);
             this.tabDptManagers.Controls.Add(this.tabPage2);
-            this.tabDptManagers.Location = new System.Drawing.Point(12, 51);
+            this.tabDptManagers.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabDptManagers.Location = new System.Drawing.Point(12, 79);
             this.tabDptManagers.Name = "tabDptManagers";
             this.tabDptManagers.SelectedIndex = 0;
-            this.tabDptManagers.Size = new System.Drawing.Size(662, 434);
+            this.tabDptManagers.Size = new System.Drawing.Size(662, 465);
             this.tabDptManagers.TabIndex = 0;
             // 
             // tabDepartments
             // 
             this.tabDepartments.BackColor = System.Drawing.SystemColors.Control;
             this.tabDepartments.Controls.Add(this.DeptsListView);
-            this.tabDepartments.Controls.Add(this.button3);
+            this.tabDepartments.Controls.Add(this.DelDepartBtn);
             this.tabDepartments.Controls.Add(this.EditDeptBtn);
             this.tabDepartments.Controls.Add(this.AddDeptBtn);
-            this.tabDepartments.Location = new System.Drawing.Point(4, 22);
+            this.tabDepartments.Location = new System.Drawing.Point(4, 25);
             this.tabDepartments.Name = "tabDepartments";
             this.tabDepartments.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDepartments.Size = new System.Drawing.Size(654, 408);
+            this.tabDepartments.Size = new System.Drawing.Size(654, 436);
             this.tabDepartments.TabIndex = 0;
             this.tabDepartments.Text = "Departments";
             // 
@@ -114,18 +117,19 @@
             this.ManagerCol.Text = "Manager";
             this.ManagerCol.Width = 145;
             // 
-            // button3
+            // DelDepartBtn
             // 
-            this.button3.Location = new System.Drawing.Point(506, 66);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(142, 23);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "Delete";
-            this.button3.UseVisualStyleBackColor = true;
+            this.DelDepartBtn.Location = new System.Drawing.Point(506, 63);
+            this.DelDepartBtn.Name = "DelDepartBtn";
+            this.DelDepartBtn.Size = new System.Drawing.Size(142, 23);
+            this.DelDepartBtn.TabIndex = 3;
+            this.DelDepartBtn.Text = "Delete";
+            this.DelDepartBtn.UseVisualStyleBackColor = true;
+            this.DelDepartBtn.Click += new System.EventHandler(this.DelDepartBtn_Click);
             // 
             // EditDeptBtn
             // 
-            this.EditDeptBtn.Location = new System.Drawing.Point(506, 36);
+            this.EditDeptBtn.Location = new System.Drawing.Point(506, 35);
             this.EditDeptBtn.Name = "EditDeptBtn";
             this.EditDeptBtn.Size = new System.Drawing.Size(142, 23);
             this.EditDeptBtn.TabIndex = 2;
@@ -135,7 +139,7 @@
             // 
             // AddDeptBtn
             // 
-            this.AddDeptBtn.Location = new System.Drawing.Point(505, 6);
+            this.AddDeptBtn.Location = new System.Drawing.Point(506, 6);
             this.AddDeptBtn.Name = "AddDeptBtn";
             this.AddDeptBtn.Size = new System.Drawing.Size(143, 23);
             this.AddDeptBtn.TabIndex = 1;
@@ -150,10 +154,10 @@
             this.tabPage2.Controls.Add(this.DelDeptManagerBtn);
             this.tabPage2.Controls.Add(this.EditDeptManagerBtn);
             this.tabPage2.Controls.Add(this.AddDptMngBtn);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(654, 408);
+            this.tabPage2.Size = new System.Drawing.Size(654, 436);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Department Managers";
             // 
@@ -195,7 +199,7 @@
             // 
             // DelDeptManagerBtn
             // 
-            this.DelDeptManagerBtn.Location = new System.Drawing.Point(505, 64);
+            this.DelDeptManagerBtn.Location = new System.Drawing.Point(506, 63);
             this.DelDeptManagerBtn.Name = "DelDeptManagerBtn";
             this.DelDeptManagerBtn.Size = new System.Drawing.Size(142, 23);
             this.DelDeptManagerBtn.TabIndex = 7;
@@ -205,7 +209,7 @@
             // 
             // EditDeptManagerBtn
             // 
-            this.EditDeptManagerBtn.Location = new System.Drawing.Point(505, 35);
+            this.EditDeptManagerBtn.Location = new System.Drawing.Point(506, 35);
             this.EditDeptManagerBtn.Name = "EditDeptManagerBtn";
             this.EditDeptManagerBtn.Size = new System.Drawing.Size(142, 23);
             this.EditDeptManagerBtn.TabIndex = 6;
@@ -215,7 +219,7 @@
             // 
             // AddDptMngBtn
             // 
-            this.AddDptMngBtn.Location = new System.Drawing.Point(505, 6);
+            this.AddDptMngBtn.Location = new System.Drawing.Point(506, 6);
             this.AddDptMngBtn.Name = "AddDptMngBtn";
             this.AddDptMngBtn.Size = new System.Drawing.Size(143, 23);
             this.AddDptMngBtn.TabIndex = 5;
@@ -226,11 +230,12 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(453, 14);
+            this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(450, 12);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(136, 13);
+            this.label1.Size = new System.Drawing.Size(94, 18);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Loged In As: James Dahms";
+            this.label1.Text = "Loged In As:";
             // 
             // LogOutBtn
             // 
@@ -245,33 +250,55 @@
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(13, 11);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(115, 13);
+            this.label2.Size = new System.Drawing.Size(167, 18);
             this.label2.TabIndex = 3;
             this.label2.Text = "GRMS: Store Manager";
+            // 
+            // UserNameLbl
+            // 
+            this.UserNameLbl.AutoSize = true;
+            this.UserNameLbl.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UserNameLbl.Location = new System.Drawing.Point(453, 36);
+            this.UserNameLbl.Name = "UserNameLbl";
+            this.UserNameLbl.Size = new System.Drawing.Size(0, 20);
+            this.UserNameLbl.TabIndex = 5;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 35);
+            this.label3.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(16, 42);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(94, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Store: Forest Lake";
+            this.label3.Size = new System.Drawing.Size(45, 20);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Store:";
+            // 
+            // StoreLbl
+            // 
+            this.StoreLbl.AutoSize = true;
+            this.StoreLbl.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StoreLbl.Location = new System.Drawing.Point(67, 42);
+            this.StoreLbl.Name = "StoreLbl";
+            this.StoreLbl.Size = new System.Drawing.Size(0, 20);
+            this.StoreLbl.TabIndex = 7;
             // 
             // MainStoreManagerApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(686, 497);
+            this.ClientSize = new System.Drawing.Size(689, 556);
+            this.Controls.Add(this.StoreLbl);
             this.Controls.Add(this.label3);
+            this.Controls.Add(this.UserNameLbl);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.LogOutBtn);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tabDptManagers);
             this.Name = "MainStoreManagerApp";
-            this.Text = "StoreManagerAppMain";
+            this.Text = "GRMS: Store Manager App";
             this.tabDptManagers.ResumeLayout(false);
             this.tabDepartments.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
@@ -288,12 +315,11 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button LogOutBtn;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ListView DeptsListView;
         private System.Windows.Forms.ColumnHeader IDCol;
         private System.Windows.Forms.ColumnHeader NameCol;
         private System.Windows.Forms.ColumnHeader ManagerCol;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button DelDepartBtn;
         private System.Windows.Forms.Button EditDeptBtn;
         private System.Windows.Forms.Button AddDeptBtn;
         private System.Windows.Forms.ListView DeptManagersListView;
@@ -304,5 +330,8 @@
         private System.Windows.Forms.Button EditDeptManagerBtn;
         private System.Windows.Forms.Button AddDptMngBtn;
         private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.Label UserNameLbl;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label StoreLbl;
     }
 }

@@ -18,6 +18,7 @@ namespace GGSR.StoreManagerApp
         private Department dept = null;
         private MainStoreManagerApp parentForm;
         private List<DeptManager> deptManagers;
+        private DeptManager currentManager;
 
         public DepartmentPP(MySqlConnection c, List<DeptManager> l, MainStoreManagerApp pf)
         {
@@ -26,44 +27,70 @@ namespace GGSR.StoreManagerApp
             connection = c;
             parentForm = pf;
             deptManagers = l;
+            SetManagerItems();
         }
 
-        public DepartmentPP(MySqlConnection c, List<DeptManager> l, Department d, MainStoreManagerApp pf)
+        public DepartmentPP(MySqlConnection c, List<DeptManager> l, Department d, DeptManager cm, MainStoreManagerApp pf)
         {
             InitializeComponent();
             connection = c;
             dept = d;
             parentForm = pf;
+            deptManagers = l;
+            currentManager = cm;
             RefreshFields();
+            SetManagerItems();
+            AddCurrentlySetManager();
         }
 
         private void RefreshFields()
         {
             TitleLbl.Text = "Editing Department: " + dept.Name;
-            //TODO More
+            DeptNameInputBox.Text = dept.Name;
+        }
+
+        private void SetManagerItems()
+        {
+            ManagerComboBox.Items.Clear();
+            foreach (var d in deptManagers)
+            {
+                ManagerComboBox.Items.Add(d.ToNameString());
+            }
+            ManagerComboBox.SelectedIndex = 0;
+        }
+
+        private void AddCurrentlySetManager()
+        {
+            if (currentManager != null)
+            {
+                deptManagers.Add(currentManager);
+                ManagerComboBox.Items.Add(currentManager.ToNameString());
+                ManagerComboBox.SelectedIndex = ManagerComboBox.Items.Count - 1;
+            }      
         }
 
         private void OkBtn_Click(object sender, EventArgs e)
         {
             Save();
-            this.Dispose();
+            this.Close();
         }
 
         private void ApplyBtn_Click(object sender, EventArgs e)
         {
             Save();
             RefreshFields();
+            parentForm.OnPropertyPageClosed();
         }
 
         private void CancelBtn_Click(object sender, EventArgs e)
         {
-            this.Dispose();
+            this.Close();
         }
 
         private void Save()
         {
             String n = DeptNameInputBox.Text.Trim();
-            int m = 1;
+            int m = deptManagers[ManagerComboBox.SelectedIndex].UserId;
             int s = parentForm.Database.StoreId;
 
             if (dept == null)
@@ -74,7 +101,16 @@ namespace GGSR.StoreManagerApp
             }
             else
             {
-                var proc = new sm_EditDepartment(connection, n, m, dept.DepartmentId);
+                var proc = new StoredProcBase();
+                if (currentManager == null)
+                {
+                    proc = new sm_EditDepartment(connection, n, m, -1, dept.DepartmentId);
+                }
+                else
+                {
+                    proc = new sm_EditDepartment(connection, n, m, currentManager.UserId, dept.DepartmentId);
+                }
+                
                 proc.Execute();
                 dept = new Department(dept.DepartmentId,n);
             }

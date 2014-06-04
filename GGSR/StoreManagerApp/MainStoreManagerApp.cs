@@ -28,11 +28,22 @@ namespace GGSR.StoreManagerApp
             Database = dbm;
             Database.ChangeConnectionUser(Database.ConnectedUser.UserType);
 
+            SetUserAndStore();
+
             RefreshDeptManagersList();
             RefreshDeptsList();
             
         }
 
+        private void SetUserAndStore()
+        {
+            UserNameLbl.Text = Database.ConnectedUser.FirstName + " " + Database.ConnectedUser.LastName;
+
+            var proc = new sm_GetStoreDetails(Database.Connection, Database.StoreId);
+            proc.Execute();
+
+            StoreLbl.Text = proc.Result.Name;
+        }
         private void AddDeptBtn_Click(object sender, EventArgs e)
         {
             var DeptPP = new DepartmentPP(Database.Connection,GetValidDeptManagers(),this);
@@ -44,14 +55,6 @@ namespace GGSR.StoreManagerApp
             DeptManagersProc = new sm_GetDepartmentManagers(Database.Connection, Database.StoreId);
             DeptManagersProc.Execute();
             List<DeptManager> list = DeptManagersProc.Result;
-
-            foreach (DeptManager dm in list.ToArray())
-            {
-                if (dm.Dept != null)
-                {
-                    list.Remove(dm);
-                }
-            }
             return list;
         }
 
@@ -60,7 +63,7 @@ namespace GGSR.StoreManagerApp
             if (DeptsListView.SelectedIndices.Count == 1)
             {
                 var selDept = DeptsProc.Result[DeptsListView.SelectedIndices[0]];
-                var DeptPP = new DepartmentPP(Database.Connection, GetValidDeptManagers(), selDept, this);
+                var DeptPP = new DepartmentPP(Database.Connection, GetValidDeptManagers(), selDept, FindDepartmentManager(selDept.DepartmentId), this);
                 DeptPP.Show();
             }        
         }
@@ -90,6 +93,7 @@ namespace GGSR.StoreManagerApp
                 proc.Execute();
             }
             RefreshDeptManagersList();
+            RefreshDeptsList();
         }
 
         private void RefreshDeptsList()
@@ -105,24 +109,37 @@ namespace GGSR.StoreManagerApp
                 string[] itm = new string[3];
                 itm[0] = d.DepartmentId.ToString();
                 itm[1] = d.Name;
-                itm[2] = FindDepartmentManager(d.DepartmentId);
+
+                DeptManager dm = FindDepartmentManager(d.DepartmentId);
+
+                if (dm == null)
+                {
+                    itm[2] = "None";
+                }
+                else
+                {
+                    itm[2] = dm.ToNameString();
+                }
+                
                 DeptsListView.Items.Add(new ListViewItem(itm));
             }
         }
 
-        private string FindDepartmentManager(int deptId)
+        private DeptManager FindDepartmentManager(int deptId)
         {
+            DeptManagersProc = new sm_GetDepartmentManagers(Database.Connection, Database.StoreId);
+            DeptManagersProc.Execute();
             List<DeptManager> list = DeptManagersProc.Result;
 
             foreach (DeptManager dm in list)
             {
                 if(dm.Dept != null)
                 {
-                    if (dm.Dept.DepartmentId == deptId) return dm.FirstName + " " + dm.LastName;
+                    if (dm.Dept.DepartmentId == deptId) return dm;
                 }
             }
             
-            return "None";
+            return null;
         }
 
         private void RefreshDeptManagersList()
@@ -165,6 +182,28 @@ namespace GGSR.StoreManagerApp
             Database.ConnectedUser = null;
             logout = true;
             this.Dispose();       
+        }
+
+        private void DelDepartBtn_Click(object sender, EventArgs e)
+        {
+            if (DeptsListView.SelectedIndices.Count == 1)
+            {
+                var selDept = DeptsProc.Result[DeptsListView.SelectedIndices[0]];
+                var m = FindDepartmentManager(selDept.DepartmentId);
+                if (m == null)
+                {
+                    var proc = new sm_DelDepartment(Database.Connection, selDept.DepartmentId, -1);
+                    proc.Execute();
+                }
+                else
+                {
+                    var proc = new sm_DelDepartment(Database.Connection, selDept.DepartmentId,m.UserId);
+                    proc.Execute();
+                }            
+            }
+
+            RefreshDeptsList();
+            RefreshDeptManagersList();
         }      
     } 
 }

@@ -43,7 +43,7 @@ namespace GGSR.Procs
 
         public override string GenerateQuery()
         {
-            return string.Format("INSERT INTO department(dept_name,store) VALUES({0},{1})",Name,storeId);
+            return string.Format("INSERT INTO department(dept_name,store) VALUES('{0}',{1})",Name,storeId);
         }
 
         private string GetIdQuery()
